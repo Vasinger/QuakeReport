@@ -34,7 +34,7 @@ public class EarthquakeActivity extends AppCompatActivity {
     private static final String LOG_TAG = EarthquakeActivity.class.getName();
 
     /** Sample JSON response for a USGS query */
-    private static final String SAMPLE_JSON_RESPONSE = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time";
+    private static final String SAMPLE_JSON_RESPONSE = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&limit=99";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
