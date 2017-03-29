@@ -23,7 +23,7 @@ import java.util.List;
  */
 public final class QueryUtils {
 
-    private static final String TAG = QueryUtils.class.getSimpleName();
+    private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
     /**
      * Create a private constructor because no one should ever create a {@link QueryUtils} object.
@@ -94,10 +94,10 @@ public final class QueryUtils {
                 inputStream = httpURLConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else {
-                Log.e(TAG, "ERROR response code: " + httpURLConnection.getResponseCode());
+                Log.e(LOG_TAG, "ERROR response code: " + httpURLConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(TAG, "Problem retrieving JSON result", e);
+            Log.e(LOG_TAG, "Problem retrieving JSON result", e);
         } finally {
             if (httpURLConnection != null) {
                 httpURLConnection.disconnect();
@@ -129,19 +129,21 @@ public final class QueryUtils {
         try {
             url = new URL(stringUrl);
         } catch (MalformedURLException e) {
-            Log.e(TAG, "Error with creating url ", e);
+            Log.e(LOG_TAG, "Error with creating url ", e);
         }
         return url;
     }
 
     public static List<Earthquake> fetchEarthquake(String requestUrl) {
+        Log.v(LOG_TAG, "fetchEarthquake ");
+
         URL url = createUrl(requestUrl);
 
         String jsonResponse = null;
         try {
             jsonResponse = makeHttpRequest(url);
         } catch (IOException e) {
-            Log.e(TAG, "Error closing input stream", e);
+            Log.e(LOG_TAG, "Error closing input stream", e);
         }
 
         List<Earthquake> earthquakes = extractEarthquakes(jsonResponse);
