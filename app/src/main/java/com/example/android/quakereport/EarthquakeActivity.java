@@ -101,13 +101,18 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String minMag = sharedPreferences.getString(getString(R.string.settings_min_magnitude_key),
                 getString(R.string.settings_min_magnitude_default));
+
+        String orderBy = sharedPreferences.getString(
+                getString(R.string.settings_order_by_key),
+                getString(R.string.settings_order_by_default));
+
         Uri baseUri = Uri.parse(SAMPLE_JSON_RESPONSE);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         uriBuilder.appendQueryParameter("format", "geojson");
         uriBuilder.appendQueryParameter("limit", "10");
         uriBuilder.appendQueryParameter("minmag", minMag);
-        uriBuilder.appendQueryParameter("orderby", "time");
+        uriBuilder.appendQueryParameter("orderby", orderBy);
 
         return new EarthquakeLoader(this, uriBuilder.toString());
     }
@@ -154,6 +159,4 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }
