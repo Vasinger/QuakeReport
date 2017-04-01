@@ -135,7 +135,6 @@ public final class QueryUtils {
     }
 
     public static List<Earthquake> fetchEarthquake(String requestUrl) {
-        Log.v(LOG_TAG, "fetchEarthquake ");
 
         URL url = createUrl(requestUrl);
 
